@@ -1,0 +1,21 @@
+- Cleaning dist dir C:/Users/richi/OneDrive/Desktop/infoproject/backend/dist
+√ Cleaning dist dir (11ms)
+- Loading Strapi
+- Building build context
+√ Building build context (134ms)
+- Creating admin
+√ Creating admin (725ms)
+√ Loading Strapi (2555ms)
+- Generating types
+√ Generating types (778ms)
+- Compiling TS
+- Cleaning dist dir C:/Users/richi/OneDrive/Desktop/infoproject/backend/dist
+√ Cleaning dist dir (206ms)
+√ Compiling TS (3289ms)
+npm error Lifecycle script `develop` failed with error:
+npm error code 4294967295
+npm error path C:\Users\richi\OneDrive\Desktop\infoproject\backend
+npm error workspace backend@0.1.0
+npm error location C:\Users\richi\OneDrive\Desktop\infoproject\backend
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c strapi develop

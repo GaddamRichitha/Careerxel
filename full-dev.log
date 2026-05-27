@@ -1,0 +1,306 @@
+
+> dev
+> powershell -NoProfile -ExecutionPolicy Bypass -Command "Remove-Item -LiteralPath frontend\.next -Recurse -Force -ErrorAction SilentlyContinue; concurrently 'npm run dev --prefix frontend' 'npm run develop --prefix backend' 'npm run open-frontend'"
+
+[0] 
+[0] > dev
+[0] > next dev
+[0] 
+[1] 
+[1] > backend@0.1.0 develop
+[1] > strapi develop
+[1] 
+[2] 
+[2] > open-frontend
+[2] > powershell -NoProfile -ExecutionPolicy Bypass -File scripts/open-frontend.ps1
+[2] 
+[0]    ▲ Next.js 15.5.18
+[0]    - Local:        http://localhost:3000
+[0]    - Network:      http://10.248.171.208:3000
+[0] 
+[0]  ✓ Starting...
+[1] - Cleaning dist dir C:/Users/richi/OneDrive/Desktop/infoproject/backend/dist
+[1] √ Cleaning dist dir (15ms)
+[0]  ✓ Ready in 3.3s
+[2] npm run open-frontend exited with code 0
+[0]  ○ Compiling / ...
+[1] - Loading Strapi
+[1] [2026-05-26 00:31:49.878] [33mwarn[39m: [email]: The "sendmail" email provider is still supported, but for most production setups that use a dedicated SMTP relay, consider switching to @strapi/provider-email-nodemailer (set `provider` to `"nodemailer"` in your email plugin config). This message is only shown in non-production environments.
+[1] [2026-05-26 00:31:50.176] [33mwarn[39m: admin.auth.options.expiresIn is deprecated and will be removed in Strapi 6. Please configure admin.auth.sessions.maxRefreshTokenLifespan and admin.auth.sessions.maxSessionLifespan.
+[1] - Building build context
+[1] [INFO] Including the following ENV variables as part of the JS bundle:
+[1]     - ADMIN_PATH
+[1]     - STRAPI_ADMIN_BACKEND_URL
+[1]     - STRAPI_TELEMETRY_DISABLED
+[1]     - STRAPI_AI_URL
+[1]     - STRAPI_ANALYTICS_URL
+[1] √ Building build context (182ms)
+[1] - Creating admin
+[1] √ Creating admin (1232ms)
+[1] √ Loading Strapi (5943ms)
+[1] - Generating types
+[1] √ Generating types (1556ms)
+[1] - Compiling TS
+[1] - Cleaning dist dir C:/Users/richi/OneDrive/Desktop/infoproject/backend/dist
+[1] √ Cleaning dist dir (196ms)
+[0]  ✓ Compiled / in 11.4s (673 modules)
+[0]  GET / 200 in 14245ms
+[1] √ Compiling TS (7133ms)
+[1] 
+[1]  Project information
+[1] 
+[1] [90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[1] [90m│[39m Time               [90m│[39m Tue May 26 2026 00:32:00 GMT+0530 (India Standa... [90m│[39m
+[1] [90m│[39m Launched in        [90m│[39m 14735 ms                                         [90m│[39m
+[1] [90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[1] [90m│[39m Process PID        [90m│[39m 22568                                            [90m│[39m
+[1] [90m│[39m Version            [90m│[39m 5.46.1 (node v22.22.3)                           [90m│[39m
+[1] [90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[1] [90m│[39m Database           [90m│[39m mysql                                            [90m│[39m
+[1] [90m│[39m Database name      [90m│[39m careerxel_db                                     [90m│[39m
+[1] [90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+[1] 
+[1]  Actions available
+[1] 
+[1] Welcome back!
+[1] To access the server ⚡️, go to:
+[1] http://localhost:1337
+[1] 
+[1] [2026-05-26 00:32:00.743] [32minfo[39m: Strapi started successfully
+[1] [2026-05-26 00:32:20.197] [32mhttp[39m: POST /api/contacts (59 ms) 201
+[1] [2026-05-26 00:32:20.523] [32mhttp[39m: GET /api/contact-submissions (8 ms) 200
+[1] [2026-05-26 00:32:20.552] [32mhttp[39m: GET /favicon.ico (2 ms) 200
+[1] [2026-05-26 00:33:22.327] [32mhttp[39m: GET /api/pricings?populate=* (4 ms) 200
+[1] [2026-05-26 00:33:22.332] [32mhttp[39m: GET /api/blogs?populate=* (7 ms) 200
+[0]  GET / 200 in 192ms
+[1] [2026-05-26 00:33:24.525] [32mhttp[39m: GET /api/pricings (2 ms) 200
+[1] [2026-05-26 00:33:26.564] [32mhttp[39m: GET /api/contact-submissions (2 ms) 200
+[1] [2m12:35:01 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2m.strapi/client/index.html[22m
+[0]  ○ Compiling /_not-found ...
+[0]  ✓ Compiled /_not-found in 1514ms (678 modules)
+[0]  GET / 404 in 2387ms
+[1] [2026-05-26 00:38:37.676] [32mhttp[39m: GET /api/pricings?populate=* (5 ms) 200
+[1] [2026-05-26 00:[2] powershell -NoProfile -Command Start-Sleep exited with code 1073807364
+Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app-paths-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app-paths-manifest.json'
+[0] }
+[1] [2m12:39:35 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2m.strapi/client/index.html[22m
+[0]  ○ Compiling /_error ...
+[0]  ✓ Compiled /_error in 5.5s (1011 modules)
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 14289ms
+[0]  GET / 500 in 405ms
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app\page.js'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app\\page.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app\page.js'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app\\page.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 654ms
+[0]  GET / 500 in 285ms
+[1] [2026-05-26 00:40:55.508] [32mhttp[39m: GET / (3 ms) 302
+[1] [2026-05-26 00:40:55.545] [32mhttp[39m: GET /admin (35 ms) 200
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app\page.js'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app\\page.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app\page.js'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app\\page.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 589ms
+[0]  GET / 500 in 277ms
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app\page.js'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app\\page.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app\page.js'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app\\page.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 579ms
+[0]  GET / 500 in 277ms
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app-paths-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app-paths-manifest.json',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\pages-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\pages-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app-paths-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app-paths-manifest.json',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\pages-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\pages-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 119ms
+[0]  GET / 500 in 41ms
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app-paths-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app-paths-manifest.json',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\pages-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\pages-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\app-paths-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\app-paths-manifest.json',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\server\pages-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\server\\pages-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\richi\OneDrive\Desktop\infoproject\frontend\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\richi\\OneDrive\\Desktop\\infoproject\\frontend\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 101ms
+[0]  GET / 500 in 36ms
+[0] [?25h
+[0] npm run dev --prefix frontend exited with code 0
+[1] [2026-05-26 00:49:34.590] [32mhttp[39m: GET /api/pricings?populate=* (11 ms) 200
+[1] [2026-05-26 00:49:34.600] [32mhttp[39m: GET /api/blogs?populate=* (14 ms) 200
+[1] [2026-05-26 00:50:38.175] [32mhttp[39m: GET /api/pricings?populate=* (5 ms) 200
+[1] [2026-05-26 00:50:38.178] [32mhttp[39m: GET /api/blogs?populate=* (6 ms) 200
+[1] [2026-05-26 00:50:58.364] [32mhttp[39m: OPTIONS /api/contacts (1 ms) 204
+[1] [2026-05-26 00:50:58.381] [32mhttp[39m: POST /api/contacts (15 ms) 201
+[1] [2026-05-26 00:50:58.713] [32mhttp[39m: GET /api/contact-submissions (6 ms) 200
+[1] [2026-05-26 00:50:58.750] [32mhttp[39m: GET /favicon.ico (1 ms) 200

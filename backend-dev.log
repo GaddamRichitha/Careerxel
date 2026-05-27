@@ -1,0 +1,41 @@
+
+> backend@0.1.0 develop
+> strapi develop
+
+[2026-05-26 00:11:26.290] [33mwarn[39m: [email]: The "sendmail" email provider is still supported, but for most production setups that use a dedicated SMTP relay, consider switching to @strapi/provider-email-nodemailer (set `provider` to `"nodemailer"` in your email plugin config). This message is only shown in non-production environments.
+[2026-05-26 00:11:26.399] [33mwarn[39m: admin.auth.options.expiresIn is deprecated and will be removed in Strapi 6. Please configure admin.auth.sessions.maxRefreshTokenLifespan and admin.auth.sessions.maxSessionLifespan.
+[INFO] Including the following ENV variables as part of the JS bundle:
+    - ADMIN_PATH
+    - STRAPI_ADMIN_BACKEND_URL
+    - STRAPI_TELEMETRY_DISABLED
+    - STRAPI_AI_URL
+    - STRAPI_ANALYTICS_URL
+
+ Project information
+
+[90m┌────────────────────[39m[90m┬──────────────────────────────────────────────────┐[39m
+[90m│[39m Time               [90m│[39m Tue May 26 2026 00:11:31 GMT+0530 (India Standa… [90m│[39m
+[90m│[39m Launched in        [90m│[39m 6652 ms                                          [90m│[39m
+[90m│[39m Environment        [90m│[39m development                                      [90m│[39m
+[90m│[39m Process PID        [90m│[39m 10108                                            [90m│[39m
+[90m│[39m Version            [90m│[39m 5.46.1 (node v22.22.3)                           [90m│[39m
+[90m│[39m Edition            [90m│[39m Community                                        [90m│[39m
+[90m│[39m Database           [90m│[39m mysql                                            [90m│[39m
+[90m│[39m Database name      [90m│[39m careerxel_db                                     [90m│[39m
+[90m└────────────────────[39m[90m┴──────────────────────────────────────────────────┘[39m
+
+ Actions available
+
+Welcome back!
+To access the server ⚡️, go to:
+http://localhost:1337
+
+[2026-05-26 00:11:31.541] [32minfo[39m: Strapi started successfully
+[2026-05-26 00:11:46.460] [32mhttp[39m: GET /api/contact-submissions (11 ms) 200
+[2m12:12:06 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2m.strapi/client/index.html[22m
+[2026-05-26 00:12:16.662] [32mhttp[39m: GET /api/pricings?populate=* (14 ms) 200
+[2026-05-26 00:12:16.670] [32mhttp[39m: GET /api/blogs?populate=* (12 ms) 200
+[2m12:12:44 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/build/index.html[22m
+[2m12:13:28 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/build/index.html[22m
+[2m12:13:28 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2m.strapi/client/index.html[22m
+[2m12:14:04 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2m.strapi/client/index.html[22m

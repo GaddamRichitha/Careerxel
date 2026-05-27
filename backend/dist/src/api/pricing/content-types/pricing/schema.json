@@ -1,0 +1,51 @@
+{
+    "kind": "collectionType",
+    "collectionName": "pricing",
+    "info": {
+        "singularName": "pricing",
+        "pluralName": "pricings",
+        "displayName": "Pricing",
+        "description": "Plan cards displayed on the CareerXel pricing section"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "audience": {
+            "type": "enumeration",
+            "enum": ["individuals", "employers", "colleges"],
+            "required": true
+        },
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "price": {
+            "type": "string",
+            "required": true
+        },
+        "cadence": {
+            "type": "string",
+            "default": "/ month"
+        },
+        "description": {
+            "type": "text",
+            "required": true
+        },
+        "badge": {
+            "type": "string"
+        },
+        "highlighted": {
+            "type": "boolean",
+            "default": false
+        },
+        "features": {
+            "type": "json",
+            "required": true
+        },
+        "sortOrder": {
+            "type": "integer",
+            "default": 0
+        }
+    }
+}
