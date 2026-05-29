@@ -1,0 +1,1 @@
+import{hx as s,he as c,gv as o}from"./strapi-CItKYoTH.js";function u(t){const e=s().getMonitor(),[a,r]=c(e,t);return o.useEffect(()=>e.subscribeToOffsetChange(r)),o.useEffect(()=>e.subscribeToStateChange(r)),a}export{u};

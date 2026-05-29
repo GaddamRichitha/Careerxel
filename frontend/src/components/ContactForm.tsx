@@ -17,8 +17,15 @@ export function ContactForm() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const firstName = String(formData.get("firstName") || "").trim();
+    const lastName = String(formData.get("lastName") || "").trim();
+    const role = String(formData.get("role") || "").trim();
+
     const data = {
-      name: String(formData.get("name") || ""),
+      name: [firstName, lastName].filter(Boolean).join(" ").trim(),
+      firstName,
+      lastName,
+      role,
       email: String(formData.get("email") || ""),
       phone: String(formData.get("phone") || ""),
       company: String(formData.get("company") || ""),
@@ -45,12 +52,16 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-10 grid max-w-2xl gap-3 rounded-2xl border border-line bg-panel/70 p-4 text-left backdrop-blur">
-      <div className="grid gap-3 sm:grid-cols-2">
-        <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="name" placeholder="Name" required />
-        <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="email" placeholder="Email" type="email" required />
+      <div className="grid gap-3 sm:grid-cols-3">
+        <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="firstName" placeholder="First name" required />
+        <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="lastName" placeholder="Last name" required />
+        <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="role" placeholder="Role" required />
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
+        <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="email" placeholder="Email" type="email" required />
         <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="phone" placeholder="Contact number" type="tel" />
+      </div>
+      <div className="grid gap-3">
         <input className="min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="company" placeholder="Company or college" />
       </div>
       <textarea className="min-h-28 min-w-0 rounded-lg border border-line bg-navy px-4 py-3 text-sm outline-none ring-accent/40 focus:ring-2" name="message" placeholder="Tell us what you want to build" required />

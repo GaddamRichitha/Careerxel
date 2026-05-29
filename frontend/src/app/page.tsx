@@ -1,11 +1,10 @@
 import { ArrowRight, BarChart3, Bot, BriefcaseBusiness, Building2, Check, GraduationCap, Search, Sparkles, UserRound } from "lucide-react";
-import { headers } from "next/headers";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ProductMock } from "@/components/ProductMock";
 import { SectionRibbon } from "@/components/SectionRibbon";
-import { getBlogs, getContacts, getPricing } from "@/lib/cms";
+import { getBlogs, getPricing } from "@/lib/cms";
 
 const audiences = [
   { title: "Candidates", icon: UserRound, text: "AI resumes, mock interviews, role matching, and personalized roadmaps." },
@@ -24,26 +23,24 @@ const features = [
 ];
 
 export default async function Home() {
-  const requestHeaders = await headers();
-  const locale = requestHeaders.get("accept-language") || requestHeaders.get("x-vercel-ip-country") || "en-US";
-
-  const [plans, blogs, contacts] = await Promise.all([
-    getPricing(locale),
-    getBlogs(),
-    getContacts()
-  ]);
+  const [plans, blogs] = await Promise.all([getPricing(), getBlogs()]);
+  const testimonials = blogs.slice(0, 3).map((post) => ({
+    quote: post.excerpt,
+    name: post.author || "CareerXel Team",
+    role: `${post.category} resource`
+  }));
 
   return (
     <main>
       <Header />
 
-      <section className="dark-mesh overflow-hidden py-14 sm:py-20 lg:py-28">
+      <section id="overview" className="dark-mesh overflow-hidden py-14 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionRibbon index="S00" name="Overview" note="careerxel.com - 2026" />
           <div className="grid items-center gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
             <div>
               <div className="font-serif text-lg italic text-mist">A career platform, reimagined.</div>
-              <div className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-accent">[] AI-native career platform</div>
+              <div className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-accent">AI-native career platform</div>
               <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[1.04] tracking-tight sm:text-7xl lg:text-8xl">
                 <span className="bone-text">Hire smarter.</span>
                 <br />
@@ -91,7 +88,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="features" className="dark-mesh py-14 sm:py-20 lg:py-28">
+      <section id="product" className="dark-mesh py-14 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionRibbon index="S02" name="Product" note="from first click to final hire" />
           <div className="flex flex-col justify-between gap-6 lg:flex-row">
@@ -130,7 +127,7 @@ export default async function Home() {
               <span className="font-normal text-mist">not what you might.</span>
             </h2>
           </div>
-          <div className="mt-12 grid items-stretch gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid items-stretch gap-4 md:grid-cols-2 lg:grid-cols-3">
             {plans.map((plan) => (
               <article key={plan.id} className={`flex h-full flex-col rounded-2xl border p-6 ${plan.highlighted ? "border-accent/50 bg-[#1E3252]" : "border-line bg-panel"}`}>
                 <div className="flex items-start justify-between gap-4">
@@ -142,7 +139,7 @@ export default async function Home() {
                   <span className="ml-2 text-sm text-mist">{plan.cadence}</span>
                 </div>
                 <p className="mt-4 min-h-16 text-sm leading-6 text-mist">{plan.description}</p>
-                <a href="#contact" className={`mt-auto block rounded-lg px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.14em] ${plan.highlighted ? "bg-accent text-white" : "border border-line text-white"}`}>
+                <a href="https://careerxel.com/register" className={`mt-auto block rounded-lg px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.14em] ${plan.highlighted ? "bg-accent text-white" : "border border-line text-white"}`}>
                   Start now
                 </a>
                 <div className="mt-6 border-t border-white/10 pt-5">
@@ -154,6 +151,32 @@ export default async function Home() {
                       </li>
                     ))}
                   </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="dark-mesh py-14 sm:py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">Testimonials</div>
+          <h2 className="max-w-4xl text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
+            What users learn from
+            <br />
+            <span className="font-normal text-mist">CareerXel features and resources.</span>
+          </h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {testimonials.map((item) => (
+              <article key={`${item.name}-${item.quote}`} className="rounded-lg border border-line bg-panel p-6">
+                <p className="text-sm leading-6 text-white/90">
+                  <span aria-hidden="true">&quot;</span>
+                  {item.quote}
+                  <span aria-hidden="true">&quot;</span>
+                </p>
+                <div className="mt-6 border-t border-white/10 pt-4">
+                  <div className="text-sm font-semibold text-white">{item.name}</div>
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-mist">{item.role}</div>
                 </div>
               </article>
             ))}
@@ -181,134 +204,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="data" className="light bg-paper py-14 text-ink sm:py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionRibbon index="S05" name="Strapi data" note="live records from pricing, blog, and contact collections" light />
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <div className="font-serif text-lg italic text-ink/65">Live CMS tables</div>
-              <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                Your Strapi entries in a
-                <br />
-                <span className="font-normal text-ink/60">readable table view.</span>
-              </h2>
-            </div>
-            <p className="max-w-2xl text-sm leading-6 text-ink/65">
-              This section reads directly from the Strapi collections and renders the saved records in table format so you can verify what is stored in the CMS.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-8">
-            <div className="overflow-hidden rounded-2xl border border-[#DCE2EE] bg-cloud">
-              <div className="border-b border-[#DCE2EE] px-5 py-4">
-                <h3 className="text-lg font-semibold">Pricing</h3>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-[#DCE2EE] text-sm">
-                  <thead className="bg-white/70 text-left text-[11px] uppercase tracking-[0.14em] text-ink/60">
-                    <tr>
-                      <th className="px-4 py-3">ID</th>
-                      <th className="px-4 py-3">Audience</th>
-                      <th className="px-4 py-3">Name</th>
-                      <th className="px-4 py-3">Price</th>
-                      <th className="px-4 py-3">Cadence</th>
-                      <th className="px-4 py-3">Badge</th>
-                      <th className="px-4 py-3">Featured</th>
-                      <th className="px-4 py-3">Features</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#DCE2EE] bg-cloud">
-                    {plans.map((plan) => (
-                      <tr key={plan.id} className="align-top">
-                        <td className="px-4 py-3 font-mono text-[11px]">{plan.id}</td>
-                        <td className="px-4 py-3 capitalize">{plan.audience}</td>
-                        <td className="px-4 py-3 font-medium">{plan.name}</td>
-                        <td className="px-4 py-3">{plan.price}</td>
-                        <td className="px-4 py-3">{plan.cadence}</td>
-                        <td className="px-4 py-3">{plan.badge ?? "—"}</td>
-                        <td className="px-4 py-3">{plan.highlighted ? "Yes" : "No"}</td>
-                        <td className="px-4 py-3">{plan.features.join(", ")}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="overflow-hidden rounded-2xl border border-[#DCE2EE] bg-cloud">
-              <div className="border-b border-[#DCE2EE] px-5 py-4">
-                <h3 className="text-lg font-semibold">Blog</h3>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-[#DCE2EE] text-sm">
-                  <thead className="bg-white/70 text-left text-[11px] uppercase tracking-[0.14em] text-ink/60">
-                    <tr>
-                      <th className="px-4 py-3">ID</th>
-                      <th className="px-4 py-3">Title</th>
-                      <th className="px-4 py-3">Category</th>
-                      <th className="px-4 py-3">Read time</th>
-                      <th className="px-4 py-3">Slug</th>
-                      <th className="px-4 py-3">Excerpt</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#DCE2EE] bg-cloud">
-                    {blogs.map((post) => (
-                      <tr key={post.id} className="align-top">
-                        <td className="px-4 py-3 font-mono text-[11px]">{post.id}</td>
-                        <td className="px-4 py-3 font-medium">{post.title}</td>
-                        <td className="px-4 py-3">{post.category}</td>
-                        <td className="px-4 py-3">{post.readTime}</td>
-                        <td className="px-4 py-3">{post.slug}</td>
-                        <td className="px-4 py-3 text-ink/70">{post.excerpt}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="overflow-hidden rounded-2xl border border-[#DCE2EE] bg-cloud">
-              <div className="border-b border-[#DCE2EE] px-5 py-4">
-                <h3 className="text-lg font-semibold">Contacts</h3>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-[#DCE2EE] text-sm">
-                  <thead className="bg-white/70 text-left text-[11px] uppercase tracking-[0.14em] text-ink/60">
-                    <tr>
-                      <th className="px-4 py-3">ID</th>
-                      <th className="px-4 py-3">Name</th>
-                      <th className="px-4 py-3">Email</th>
-                      <th className="px-4 py-3">Company</th>
-                      <th className="px-4 py-3">Phone</th>
-                      <th className="px-4 py-3">Status</th>
-                      <th className="px-4 py-3">Source</th>
-                      <th className="px-4 py-3">Message</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#DCE2EE] bg-cloud">
-                    {contacts.map((contact) => (
-                      <tr key={contact.id} className="align-top">
-                        <td className="px-4 py-3 font-mono text-[11px]">{contact.id}</td>
-                        <td className="px-4 py-3 font-medium">{contact.name}</td>
-                        <td className="px-4 py-3">{contact.email}</td>
-                        <td className="px-4 py-3">{contact.company ?? "—"}</td>
-                        <td className="px-4 py-3">{contact.phone ?? "—"}</td>
-                        <td className="px-4 py-3 capitalize">{contact.status ?? "new"}</td>
-                        <td className="px-4 py-3 capitalize">{contact.source ?? "website"}</td>
-                        <td className="px-4 py-3 text-ink/70">{contact.message}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section id="contact" className="cta-mesh py-14 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 text-center sm:px-8">
-          <SectionRibbon index="S06" name="Contact" note="posts to Strapi collection: contacts" />
+          <SectionRibbon index="S05" name="Contact" note="posts to Strapi collection: contacts" />
           <h2 className="text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
             <span className="bone-text">Get started in minutes.</span>
           </h2>

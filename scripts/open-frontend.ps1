@@ -1,6 +1,6 @@
 Start-Sleep -Seconds 10
 
-$ports = @('3000', '3010')
+$ports = @('3000')
 $selectedPort = $null
 
 foreach ($port in $ports) {
@@ -18,7 +18,7 @@ foreach ($port in $ports) {
 }
 
 if (-not $selectedPort) {
-    $selectedPort = '3010'
+    $selectedPort = '3000'
 }
 
 Start-Process "http://127.0.0.1:$selectedPort"

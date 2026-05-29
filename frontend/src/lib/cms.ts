@@ -1,6 +1,6 @@
 export type PricingPlan = {
   id: string;
-  audience: "individuals" | "employers" | "colleges";
+  audience: "students" | "employees" | "colleges";
   name: string;
   price: string;
   cadence: string;
@@ -17,12 +17,16 @@ export type BlogPost = {
   excerpt: string;
   category: string;
   readTime: string;
+  author?: string;
   publishedAt?: string;
 };
 
 export type ContactEntry = {
   id: string;
   name: string;
+  firstName?: string;
+  lastName?: string;
+  role?: string;
   email: string;
   company?: string;
   phone?: string;
@@ -84,6 +88,11 @@ function formatPrice(price: string, currency: CurrencyCode): string {
   }).format(convertedValue);
 }
 
+type StrapiItem = {
+  id?: string | number;
+  attributes?: Record<string, unknown>;
+} & Record<string, unknown>;
+
 async function fetchCollection<T>(collection: string): Promise<T[]> {
   try {
     const res = await fetch(`${STRAPI_URL}/api/${collection}?populate=*`, {
@@ -95,19 +104,41 @@ async function fetchCollection<T>(collection: string): Promise<T[]> {
     }
 
     const json = await res.json();
-    return (json.data || []).map((item: any) => ({
-      id: String(item.id),
-      ...(item.attributes || item)
-    }));
+    return (json.data || []).map((item: StrapiItem) => ({
+      id: String(item.id ?? item.attributes?.id ?? ""),
+      ...(item.attributes ?? item)
+    }) as T);
   } catch {
     return [];
   }
 }
 
+function normalizeAudience(audience: string): PricingPlan["audience"] {
+  if (audience === "individuals") {
+    return "students";
+  }
+
+  if (audience === "employers") {
+    return "employees";
+  }
+
+  if (audience === "students" || audience === "employees" || audience === "colleges") {
+    return audience;
+  }
+
+  return "colleges";
+}
+
 export async function getPricing(locale?: string | null): Promise<PricingPlan[]> {
   const data = await fetchCollection<PricingPlan>("pricings");
   const currency = detectCurrency(locale);
-  const plans = data.length ? data : fallbackPricing;
+  const audienceOrder = { students: 0, employees: 1, colleges: 2 };
+  const plans = (data.length ? data : fallbackPricing)
+    .map((plan) => ({
+      ...plan,
+      audience: normalizeAudience(String(plan.audience || ""))
+    }))
+    .sort((a, b) => audienceOrder[a.audience] - audienceOrder[b.audience]);
 
   return plans.map((plan) => ({
     ...plan,
@@ -127,43 +158,32 @@ export async function getContacts(): Promise<ContactEntry[]> {
 
 export const fallbackPricing: PricingPlan[] = [
   {
-    id: "free",
-    audience: "individuals",
-    name: "Free",
-    price: "$0",
-    cadence: "forever",
-    description: "Everything a candidate needs to start applying with confidence.",
+    id: "starter",
+    audience: "students",
+    name: "Starter",
+    price: "Free",
+    cadence: "",
+    description: "A free plan for building interview-ready skill profiles.",
     features: ["Resume builder", "5 AI mock interviews", "Daily job matches", "Career roadmap"]
   },
   {
-    id: "plus",
-    audience: "individuals",
-    name: "Plus",
-    price: "$9",
-    cadence: "/ month",
-    description: "For active job seekers running multiple interview tracks.",
+    id: "pro",
+    audience: "employees",
+    name: "Pro",
+    price: "Per month",
+    cadence: "",
+    description: "A monthly plan for structured hiring workflows and interview prep.",
     badge: "POPULAR",
     highlighted: true,
     features: ["Unlimited resumes", "Unlimited AI interviews", "Role coaching", "Salary benchmarks"]
   },
   {
-    id: "growth",
-    audience: "employers",
-    name: "Growth",
-    price: "$39",
-    cadence: "/ seat / month",
-    description: "Applicant tracking, AI screens, and hiring analytics for growing teams.",
-    badge: "TEAMS",
-    highlighted: true,
-    features: ["10 active jobs", "250 AI screenings", "Bulk applicant actions", "Calendar booking"]
-  },
-  {
-    id: "campus",
+    id: "annual",
     audience: "colleges",
-    name: "Campus",
-    price: "$11,990",
-    cadence: "/ campus / year",
-    description: "Placement dashboards and cohort readiness for every department.",
+    name: "Annual",
+    price: "Per year",
+    cadence: "",
+    description: "An annual plan for scale, reporting, and recruiter-facing placement workflows.",
     features: ["Unlimited students", "Placement analytics", "Faculty access", "Recruiter network"]
   }
 ];

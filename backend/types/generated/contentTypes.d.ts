@@ -490,6 +490,8 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.String & Schema.Attribute.Required;
+    firstName: Schema.Attribute.String;
+    lastName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -500,6 +502,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
     source: Schema.Attribute.String;
     status: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

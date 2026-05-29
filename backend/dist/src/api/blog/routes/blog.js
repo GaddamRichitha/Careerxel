@@ -9,6 +9,14 @@ exports.default = {
             config: {
                 auth: false
             }
+        },
+        {
+            method: "POST",
+            path: "/blogs",
+            handler: "blog.create",
+            config: {
+                auth: false
+            }
         }
     ]
 };

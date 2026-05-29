@@ -1,0 +1,1 @@
+import{h9 as s,ii as r,fz as i,bp as u}from"./strapi-CItKYoTH.js";const h=({children:t})=>{const o=s("PrivateRoute",n=>n.token),{pathname:e,search:a}=r();return o!==null?t:i.jsx(u,{to:{pathname:"/auth/login",search:e!=="/"?`?redirectTo=${encodeURIComponent(`${e}${a}`)}`:void 0}})};export{h as P};

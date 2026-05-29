@@ -1,0 +1,1 @@
+import{ib as u,bR as p,i7 as b,gv as d}from"./strapi-CItKYoTH.js";const g=(o={},r)=>{const{locale:t}=u(),s=p(t,{sensitivity:"base"}),{data:e,error:a,isError:n,isLoading:i,refetch:c}=b(o,r);return{roles:d.useMemo(()=>[...e??[]].sort((m,l)=>s.compare(m.name,l.name)),[e,s]),error:a,isError:n,isLoading:i,refetch:c}};export{g as u};

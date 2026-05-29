@@ -1,11 +1,37 @@
 import Link from "next/link";
 
-const groups = {
-  Product: ["Features", "AI & Intelligence", "Pricing", "Changelog"],
-  Solutions: ["Candidates", "Employers", "Colleges", "College Groups"],
-  Resources: ["Blog", "Help Center", "Guides", "API Docs"],
-  Company: ["About", "Contact", "Careers", "Press"]
-};
+const groups = [
+  {
+    title: "Product",
+    links: [
+      { label: "Features", href: "#product" },
+      { label: "Pricing", href: "#pricing" }
+    ]
+  },
+  {
+    title: "Solutions",
+    links: [
+      { label: "Candidates", href: "#solutions" },
+      { label: "Employers", href: "#solutions" },
+      { label: "Colleges", href: "#solutions" }
+    ]
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Blog", href: "/blog/new" },
+      { label: "Help Center", href: "#contact" },
+      { label: "Guides", href: "#resources" }
+    ]
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "#overview" },
+      { label: "Contact", href: "#contact" }
+    ]
+  }
+];
 
 export function Footer() {
   return (
@@ -21,12 +47,16 @@ export function Footer() {
               An AI-native career and recruitment platform. Built for candidates, employers, and colleges.
             </p>
           </div>
-          {Object.entries(groups).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{title}</h3>
+          {groups.map((group) => (
+            <div key={group.title}>
+              <h3 className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{group.title}</h3>
               <div className="mt-4 grid gap-2">
-                {links.map((link) => (
-                  <a key={link} href="#" className="text-sm text-mist transition hover:text-white">{link}</a>
+                {group.links.map((link) => (
+                  link.href.startsWith("/") ? (
+                    <Link key={link.label} href={link.href} className="text-sm text-mist transition hover:text-white">{link.label}</Link>
+                  ) : (
+                    <a key={link.label} href={link.href} className="text-sm text-mist transition hover:text-white">{link.label}</a>
+                  )
                 ))}
               </div>
             </div>

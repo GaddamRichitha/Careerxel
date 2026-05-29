@@ -29,6 +29,15 @@
             "type": "text",
             "required": true
         },
+        "firstName": {
+            "type": "string"
+        },
+        "lastName": {
+            "type": "string"
+        },
+        "role": {
+            "type": "string"
+        },
         "source": {
             "type": "string"
         },

@@ -13,7 +13,7 @@ function Test-FrontendResponse {
 }
 
 function Stop-StaleFrontendProcesses {
-    foreach ($port in 3000, 3010) {
+    foreach ($port in 3000) {
         $connection = Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue | Select-Object -First 1
         if ($connection) {
             Stop-Process -Id $connection.OwningProcess -Force -ErrorAction SilentlyContinue
@@ -28,9 +28,6 @@ if ($existingConnections) {
 }
 
 $frontendRunning = Test-FrontendResponse -Port 3000
-if (-not $frontendRunning) {
-    $frontendRunning = Test-FrontendResponse -Port 3010
-}
 
 $commands = @()
 if (-not $frontendRunning) {
